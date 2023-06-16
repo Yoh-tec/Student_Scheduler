@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>新規授業登録画面</h1>
+
+<form method="POST">
+<table class='schedules'>
+    <tr>
+        <th class='time'></th>
+        <th class='week'>9:00<br>~<br>10:40</th>
+        <th class='week'>10:50<br>~<br>12:30</th>
+        <th class='week'>13:20<br>~<br>15:00</th>
+        <th class='week'>15:10<br>~<br>16:50</th>
+        <th class='week'>17:00<br>~<br>18:40</th>
+    </tr>
+    <tr>
+    <th class='time'>Mon</th>
+    {% for i in range(1,6) %}
+        <td class='cen'>
+    <h4>月曜日{{ i }}時限目</h4>
+    <p><label for="'name_mon{{ i }}">授業名:</label>
+        <input type="text" name="name_mon{{ i }}"></p>
+    <p><label for="type_mon{{ i }}">授業形態:</label>
+        <input type="text" name="type_mon{{ i }}"></p>
+    <p><label for="teacher_mon{{ i }}">講師名:</label>
+        <input type="text" name="teacher_mon{{ i }}"></p>
+    <p><label for="file_url_mon{{ i }}">教材URL</label>
+        <input type="text" name="file_url_{{ i }}"></p>
+    <p><label for="classroom_mon{{ i }}">教室名:</label>
+        <input type="text" name="classroom_mon{{ i }}"></p>
+    <p><label for="zoom_url_mon{{ i }}">ZoomのURL:</label>
+        <input type="text" name="zoom_url_mon{{ i }}"><br>
+        <label for="zoom_id_{{ i }}">ZoomのID:</label>
+        <input type="text" name="zoom_id_mon{{ i }}">
+        <label for="zoom_pass_mon{{ i }}">Zoomのパスワード</label>
+        <input type="text" name="zoom_pass_mon{{ i }}"></p>
+
+    </td>
+    {% endfor %}
+    </tr>
+    <tr>
+        <th class='time'>Tue</th>
+    {% for i in range(1,6) %}
+        <td class='cen'>
+    <h4>火曜日{{ i }}時限目</h4>
+    <p><label for="'name_tue{{ i }}">授業名:</label>
+        <input type="text" name="name_tue{{ i }}"></p>
+    <p><label for="type_tue{{ i }}">授業形態:</label>
+        <input type="text" name="type_tue{{ i }}"></p>
+    <p><label for="teacher_tue{{ i }}">講師名:</label>
+        <input type="text" name="teacher_tue{{ i }}"></p>
+    <p><label for="file_url_tue{{ i }}">教材URL</label>
+        <input type="text" name="file_url_tue{{ i }}"></p>
+    <p><label for="classroom_tue{{ i }}">教室名:</label>
+        <input type="text" name="classroom_tue{{ i }}"></p>
+    <p><label for="zoom_url_tue{{ i }}">ZoomのURL:</label>
+        <input type="text" name="zoom_url_tue{{ i }}"><br>
+        <label for="zoom_id_tue{{ i }}">ZoomのID:</label>
+        <input type="text" name="zoom_id_tue{{ i }}">
+        <label for="zoom_pass_tue{{ i }}">Zoomのパスワード</label>
+        <input type="text" name="zoom_pass_tue{{ i }}"></p>
+
+    </td>
+    {% endfor %}
+    </tr>
+    <tr>
+    <th class='time'>Wed</th>
+    {% for i in range(1,6) %}
+        <td class='cen'>
+    <h4>水曜日{{ i }}時限目</h4>
+    <p><label for="'name_wed{{ i }}">授業名:</label>
+        <input type="text" name="name_wed{{ i }}"></p>
+    <p><label for="type_wed{{ i }}">授業形態:</label>
+        <input type="text" name="type_wed{{ i }}"></p>
+    <p><label for="teacher_wed{{ i }}">講師名:</label>
+        <input type="text" name="teacher_wed{{ i }}"></p>
+    <p><label for="file_url_wed{{ i }}">教材URL</label>
+        <input type="text" name="file_url_wed{{ i }}"></p>
+    <p><label for="classroom_wed{{ i }}">教室名:</label>
+        <input type="text" name="classroom_wed{{ i }}"></p>
+    <p><label for="zoom_url_wed{{ i }}">ZoomのURL:</label>
+        <input type="text" name="zoom_url_wed{{ i }}"><br>
+        <label for="zoom_id_wed{{ i }}">ZoomのID:</label>
+        <input type="text" name="zoom_id_wed{{ i }}">
+        <label for="zoom_pass_wed{{ i }}">Zoomのパスワード</label>
+        <input type="text" name="zoom_pass_wed{{ i }}"></p>
+
+    </td>
+    {% endfor %}
+    </tr>
+
+    <tr>
+        <th class='time'>Thu</th>
+    {% for i in range(1,6) %}
+        <td class='cen'>
+    <h4>木曜日{{ i }}時限目</h4>
+    <p><label for="'name_thu{{ i }}">授業名:</label>
+        <input type="text" name="name_thu{{ i }}"></p>
+    <p><label for="type_thu{{ i }}">授業形態:</label>
+        <input type="text" name="type_thu{{ i }}"></p>
+    <p><label for="teacher_thu{{ i }}">講師名:</label>
+        <input type="text" name="teacher_thu{{ i }}"></p>
+    <p><label for="file_url_thu{{ i }}">教材URL</label>
+        <input type="text" name="file_url_thu{{ i }}"></p>
+    <p><label for="classroom_thu{{ i }}">教室名:</label>
+        <input type="text" name="classroom_thu{{ i }}"></p>
+    <p><label for="zoom_url_thu{{ i }}">ZoomのURL:</label>
+        <input type="text" name="zoom_url_thu{{ i }}"><br>
+        <label for="zoom_id_thu{{ i }}">ZoomのID:</label>
+        <input type="text" name="zoom_id_thu{{ i }}">
+        <label for="zoom_pass_thu{{ i }}">Zoomのパスワード</label>
+        <input type="text" name="zoom_pass_thu{{ i }}"></p>
+
+    </td>
+    {% endfor %}
+    </tr>
+    <tr>
+        <th class='time'>Fri</th>
+    {% for i in range(1,6) %}
+        <td class='cen'>
+    <h4>金曜日{{ i }}時限目</h4>
+    <p><label for="'name_fri{{ i }}">授業名:</label>
+        <input type="text" name="name_fri{{ i }}"></p>
+    <p><label for="type_fri{{ i }}">授業形態:</label>
+        <input type="text" name="type_fri{{ i }}"></p>
+    <p><label for="teacher_fri{{ i }}">講師名:</label>
+        <input type="text" name="teacher_fri{{ i }}"></p>
+    <p><label for="file_url_fri{{ i }}">教材URL</label>
+        <input type="text" name="file_url_fri{{ i }}"></p>
+    <p><label for="classroom_fri{{ i }}">教室名:</label>
+        <input type="text" name="classroom_fri{{ i }}"></p>
+    <p><label for="zoom_url_fri{{ i }}">ZoomのURL:</label>
+        <input type="text" name="zoom_url_fri{{ i }}"><br>
+        <label for="zoom_id_fri{{ i }}">ZoomのID:</label>
+        <input type="text" name="zoom_id_fri{{ i }}">
+        <label for="zoom_pass_fri{{ i }}">Zoomのパスワード</label>
+        <input type="text" name="zoom_pass_fri{{ i }}"></p>
+
+    </td>
+    {% endfor %}
+    </tr>
+    <tr>
+        <th class='time last'>Sat</th>
+    {% for i in range(1,6) %}
+        <td class='cen'>
+    <h4>土曜日{{ i }}時限目</h4>
+    <p><label for="'name_sat{{ i }}">授業名:</label>
+        <input type="text" name="name_sat{{ i }}"></p>
+    <p><label for="type_sat{{ i }}">授業形態:</label>
+        <input type="text" name="type_sat{{ i }}"></p>
+    <p><label for="teacher_sat{{ i }}">講師名:</label>
+        <input type="text" name="teacher_sat{{ i }}"></p>
+    <p><label for="file_url_sat{{ i }}">教材URL</label>
+        <input type="text" name="file_url_sat{{ i }}"></p>
+    <p><label for="classroom_sat{{ i }}">教室名:</label>
+        <input type="text" name="classroom_sat{{ i }}"></p>
+    <p><label for="zoom_url_sat{{ i }}">ZoomのURL:</label>
+        <input type="text" name="zoom_url_sat{{ i }}"><br>
+        <label for="zoom_id_sat{{ i }}">ZoomのID:</label>
+        <input type="text" name="zoom_id_sat{{ i }}">
+        <label for="zoom_pass_sat{{ i }}">Zoomのパスワード</label>
+        <input type="text" name="zoom_pass_sat{{ i }}"></p>
+    </td>
+    {% endfor %}
+    </tr>
+</table>
+<input type="submit" value="次へ">
+</form>
+
+{% endblock %}

@@ -1,0 +1,703 @@
+<!doctype html>
+<head>
+    <title>{{title}}</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="./images/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+        body{
+            background-color:#dadada;
+            padding:0;
+            margin:0;
+        }
+        #nav{
+            position:fixed;
+            z-index:100;
+            width:100%;
+        }
+        table{
+            border-collapse:collapse;
+        }
+        .cen{
+            border-bottom:darkgreen 1px solid;
+            height:100px;
+        }
+        .time{
+            border-bottom:darkgreen 1px solid;
+        }
+        .cen{
+            text-align:center;
+        }
+        td.cen{
+            border-left:darkgreen 1px solid;
+        }
+        .week{
+            border-left:darkgreen 1px solid;
+            text-align:center;
+            border-bottom:darkgreen 1px solid;
+            height:50px;
+        }
+        td.cen,
+        th.cen{
+            width:15%;
+            padding:0;
+            margin:0;
+        }
+        td.week,
+        th.week{
+            width:10%;
+        }
+        th{
+            text-align:center;
+        }
+        .last{
+            border-bottom:none;
+        }
+        #r{
+            background-color: darkmagenta;
+            height:3000px;
+        }
+        .style-font{
+            font-family: 'Lobster', cursive;
+            font-family: 'Playfair Display', serif;
+        }
+        #brand{
+            font-weight: bold;
+        }
+        .btn-primary{
+            color:black;
+            background:transparent;
+            border:none;
+            margin:0;
+            outline: none;
+        }
+        .btn-primary:hover,
+        .btn-primary:active,
+        .btn-primary::after{
+            font-weight: bolder;
+            background:transparent;
+            border:none;
+            margin:0;
+            color:black;
+        }
+        td.cen:hover{
+            color:black;
+            background-color: #dadada;
+            border-radius:0;
+            border:none;
+            box-shadow: 0 0 15px 0 black inset;
+            border-bottom:darkgreen 1px solid;
+            border-left:darkgreen 1px solid;
+        }
+        .today-subject{
+            background-color:beige;
+            border-radius:50%;
+            width:100px;
+            height:100px;
+        }
+        #today{
+            background-image:url(./images/web-bg-1_page-0001.jpg);
+            background-size: cover;
+            background-position: bottom right;
+            background-repeat: no-repeat;
+            width:100%;
+            height:auto;
+            padding-bottom:20px;
+        }
+        main{
+            position:absolute;
+            margin-top:56px;
+        }
+        .row{
+            margin-left:0;
+            margin-left:0;
+        }
+        #h-left{
+            margin:20px;
+            margin-top:30px;
+            background:transparent;
+        }
+        .card{
+            width:30%;
+            height:50%;
+            margin:calc(10%/6);
+            box-shadow: 5px 5px 5px inset;
+            border-radius:0;
+        }
+        /*.card:hover{
+            background-color: azure;
+            width:30%;
+            height:50%;
+            margin:calc(10%/6);
+            box-shadow: 5px 5px 5px azure;
+            border-radius:0;
+
+        }*/
+        .clock-con{
+            margin-top:68px;
+            width:30%;
+            height:auto;
+            background:transparent;
+            position:fixed;
+            z-index:99;
+            margin-left:70%;
+        }
+        .clock {
+            font-family: 'Share Tech Mono', monospace;
+            color:black;
+            /*color: #daf6ff;*/
+            /*text-shadow: 0 0 20px #0aafe6;*/
+            text-shadow: 0 0 20px gray;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .clock-date {
+            font-size: 25px;
+        }
+
+        /* 時間のスタイル */
+        .clock-time {
+            font-size: 50px;
+        }
+        #today-title{
+            margin-left:50px;
+            padding-top:20px;
+        }
+        .schedules{
+            margin:20px;
+        }
+        #main{
+            padding:20px;
+            margin-left:50px;
+            margin-right:50px;
+            background-color: whitesmoke;
+            border-radius:50%;
+            box-shadow: 0 0 15px 0 grey;
+        }
+        .line{
+            margin:20px;
+        }
+        .time-right{
+            float:right;
+            padding-bottom:0;
+            margin-top:5px;
+        }
+        .text-muted{
+            text-decoration: none;
+        }
+        @media screen and (max-width:450px) {
+            .time-right{
+                font-size: smaller;
+            }
+        }
+        .custom-btn {
+  padding: 10px 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  background: whitesmoke;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+.btn-14 {
+  z-index: 1;
+}
+.btn-14:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background: #000;
+  transition: all 0.3s ease;
+}
+.btn-14:hover {
+  color: #fff;
+  box-shadow: none;
+}
+.btn-14:hover:after {
+  left: 0;
+  width: 100%;
+}
+.btn-14:active {
+  top: 2px;
+}
+
+    </style>
+    <link href="./images/test2.css" rel='stylesheet'>
+</head>
+<body>
+    <nav id='nav' class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a id='brand' class="navbar-brand style-font" href="#">My schedule</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled">Disabled</a>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+        </div>
+    </nav>
+    <div class="clock-con">
+        <!-- 時計 -->
+        <div class="clock">
+          <p class="clock-date"></p><!-- 時計の日付テキスト -->
+          <p class="clock-time"></p><!-- 時計の時間テキスト -->
+        </div>
+    </div>
+    <main>
+    <div id='today'>
+        <h3 id='today-title' class='style-font'>{{day}}'s schedule</h3>
+        <div id='h-left' class='row col-sm-8'>
+            <div class="custom-btn btn-14 card">
+                <div class="card-body">
+                    <h6 class='time-right'>{{ a[0][1] }} ~ {{ a[0][2] }}</h6>
+                    <h6 class="card-title">{{a[0][0]}}</h5>
+                    <hr>
+                    <a href='{{a[0][3]}}' class="card-subtitle mb-2 text-muted">Zoomに参加する</a>
+                    <p class="card-text">Zoom ID:{{a[0][4]}}</p>
+                    <p class="card-text">Zoom Password:{{a[0][5]}}</p>
+                </div>
+            </div>
+            <div class="card custom-btn btn-14">
+                <div class="card-body">
+                    <h6 class='time-right'>{{ a[1][1] }} ~ {{ a[1][2] }}</h6>
+                    <h6 class="card-title">{{a[1][0]}}</h5>
+                    <hr>
+                    <a href='{{a[1][3]}}' class="card-subtitle mb-2 text-muted">Zoomに参加する</a>
+                    <p class="card-text">Zoom ID:{{a[1][4]}}</p>
+                    <p class="card-text">Zoom Password:{{a[1][5]}}</p>
+                </div>
+            </div>
+            <div class="card custom-btn btn-14">
+                <div class="card-body">
+                    <h6 class='time-right'>{{ a[2][1] }} ~ {{ a[2][2] }}</h6>
+                    <h6 class="card-title">{{a[2][0]}}</h5>
+                    <hr>
+                    <a href='{{a[2][3]}}' class="card-subtitle mb-2 text-muted">Zoomに参加する</a>
+                    <p class="card-text">Zoom ID:{{a[2][4]}}</p>
+                    <p class="card-text">Zoom Password:{{a[2][5]}}</p>
+                </div>
+            </div>
+            <div class="card custom-btn btn-14">
+                <div class="card-body">
+                    <h6 class='time-right'>{{ a[3][1] }} ~ {{ a[3][2] }}</h6>
+                    <h6 class="card-title">{{a[3][0]}}</h5>
+                    <hr>
+                    <a href='{{a[3][3]}}' class="card-subtitle mb-2 text-muted">Zoomに参加する</a>
+                    <p class="card-text">Zoom ID:{{a[3][4]}}</p>
+                    <p class="card-text">Zoom Password:{{a[3][5]}}</p>
+                </div>
+            </div>
+            <div class="card custom-btn btn-14">
+                <div class="card-body">
+                    <h6 class='time-right'>{{ a[4][1] }} ~ {{ a[4][2] }}</h6>
+                    <h6 class="card-title">{{a[4][0]}}</h5>
+                    <hr>
+                    <a href='{{a[4][3]}}' class="card-subtitle mb-2 text-muted">Zoomに参加する</a>
+                    <p class="card-text">Zoom ID:{{a[4][4]}}</p>
+                    <p class="card-text">Zoom Password:{{a[4][5]}}</p>
+                </div>
+            </div>
+            <div class="card custom-btn btn-14">
+                <div class="card-body">
+                    <h6 class='time-right'>{{ a[5][1] }} ~ {{ a[5][2] }}</h6>
+                    <h6 class="card-title">{{a[5][0]}}</h5>
+                    <hr>
+                    <a href='{{a[5][3]}}' class="card-subtitle mb-2 text-muted">Zoomに参加する</a>
+                    <p class="card-text">Zoom ID:{{a[5][4]}}</p>
+                    <p class="card-text">Zoom Password:{{a[5][5]}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="line anim"></div>
+    <div id='main'>
+    <table class='schedules'>
+        <tr>
+            <th class='time'></th>
+            <th class='week'>Mon</th>
+            <th class='week'>Tue</th>
+            <th class='week'>Wed</th>
+            <th class='week'>Thi</th>
+            <th class='week'>Fri</th>
+            <th class='week'>Sat</th>
+        </tr>
+        <tr>
+            <th class='time'>9:00<br>~<br>10:40</th>
+            <td class='cen'></td>
+            <!--<td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    情報処理技法
+                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/81872879113?pwd=V2dSMTBtT2VtN1V4Vk5yMHBzOWZnZz09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 818 7287 9113<br>Zoom Pass: 768548
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>-->
+            <td class="card_2 cen">
+                <div class="face_2 face_21">
+                  <div class="content_2">          
+                    <h3>情報処理技法</h3>
+                  </div>
+                </div>
+                <div class="face_2 face_22">
+                  <div class="content_2">
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ab repudiandae, explicabo voluptate et hic cum ratione a. Officia delectus illum perferendis maiores quia molestias vitae fugiat aspernatur alias corporis?</p>
+                    <a href="#" type="button">Read More</a>
+                  </div>
+                </div>
+            </td>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal13">
+                    論理回路
+                </div>
+                <div class="modal fade" id="exampleModal13" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<br><a href="https://www.google.com/url?q=https://hosei-ac-jp.zoom.us/j/84826457738?pwd%3DNXZrenFaK0pMLzZGRDBEcEgzdGRIUT09&sa=D&source=calendar&ust=1631322295774389&usg=AOvVaw1EW6LspI0pFrZbJDb0gIPe" class="tooltip-test" title="Tooltip">9:00~10:00の部に参加</a><br><a href='https://www.google.com/url?q=https://hosei-ac-jp.zoom.us/j/82051349360?pwd%3DYjdpS2dyMUZEUjEvWnFOV0JPYWFrQT09&sa=D&source=calendar&ust=1631322483120606&usg=AOvVaw38D_SApjeRwqLm3tz0JlTB'>10:00~10:40の部に参加</a></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'></td>
+            <td class='cen'></td>
+            <td class='cen'></td>
+        </tr>
+        <tr>
+            <th class='time'>10:50<br>~<br>12:30</th>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal21">
+                    線形代数学及び演習II
+                </div>
+                <div class="modal fade" id="exampleModal21" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://www.google.com/url?q=https://hosei-ac-jp.zoom.us/j/84796645206?pwd%3DTzVlTnVkU0tjSXZGak0wd3lYbStNdz09&sa=D&source=calendar&ust=1632109827993900&usg=AOvVaw1QztLCV81pXDopTXRluNiQ" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 847 9664 5206<br>Zoom Pass: 212975
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal22">
+                    確率統計（情報）
+                </div>
+                <div class="modal fade" id="exampleModal22" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/89685187795?pwd=ZXpvaWFlUXgwcmJUTkkvS1dCUU9mUT09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 896 8518 7795<br>Zoom Pass: 086011
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'></td>
+            <td class='cen'></td>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal25">
+                    プログラミング言語C++
+                </div>
+                <div class="modal fade" id="exampleModal25" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/88508803124?pwd=bG9pOGxjcVI0bVhFMHdaMWhkbXNIdz09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 885 0880 3124<br>Zoom Pass: 297420
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'></td>
+        </tr>
+        <tr>
+            <th class='time'>13:20<br>~<br>15:00</th>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal31">
+                    微分積分学及び演習II
+                </div>
+                <div class="modal fade" id="exampleModal31" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>オンデマンド<a href="https://hoppii.hosei.ac.jp/portal/site/50452/tool/3076d870-0c42-489f-bf67-40f23925289c" class="tooltip-test" title="Tooltip">教材へ移動</a></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal32">
+                    国際関係論
+                </div>
+                <div class="modal fade" id="exampleModal32" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/82559146299?pwd=SU1xS1NHbVlqMnM1bHlBNG5jT0xvdz09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 825 5914 6299<br>Zoom Pass: 695026
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'></td>
+            <td class='cen'></td>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal35">
+                    コンプリヘンシヴ・イングリッシュII
+                </div>
+                <div class="modal fade" id="exampleModal35" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/82732852708?pwd=MTVJS0d5RmozZ1pBdnlJc0ZhOTRzUT09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 827 3285 2708<br>Zoom Pass: 946077
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'></td>
+        </tr>
+        <tr>
+            <th class='time'>15:10<br>~<br>16:50</th>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal41">
+                    インターネットプロトコル
+                </div>
+                <div class="modal fade" id="exampleModal41" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/82684198936?pwd=YVpXMTl3UlVEM1FTbVA0YjZST1Y5Zz09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 826 8419 8936<br>Zoom Pass: hosei
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal42">
+                    離散数学（情報）
+                </div>
+                <div class="modal fade" id="exampleModal42" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/85988306425?pwd=RnhRb0xGR2w1L3JwQjcrMWlKdmtWUT09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 859 8830 6425<br>Zoom Pass: 687021
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal43">
+                    コミュニケーションストラテジー
+                </div>
+                <div class="modal fade" id="exampleModal43" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Zoom ID: 812 3222 8924<br>Zoom Pass: 661328
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen'></td>
+            <td class='cen'></td>
+            <td class='cen'></td>
+        </tr>
+        <tr>
+            <th class='time last'>17:00<br>~<br>18:40</th>
+            <td class='cen last'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal51">
+                    物理学基礎II
+                </div>
+                <div class="modal fade" id="exampleModal51" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/meeting/register/tZcpfuihpzIqH9Y1UUOfmFeB8xk6Zuu2H02T" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen last'></td>
+            <td class='cen last'></td>
+            <td class='cen last'></td>
+            <td class='cen last'>
+                <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal55">
+                    オーラルプレゼン＆ディスカッション
+                </div>
+                <div class="modal fade" id="exampleModal55" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>Zoom Link:<a href="https://hosei-ac-jp.zoom.us/j/85144533318?pwd=RitMRDk5eDQzaFZYcVpJaWRDMHVVQT09" class="tooltip-test" title="Tooltip">Zoomに参加する</a></div>
+                                <hr>
+                                Zoom ID: 851 4453 3318<br>Zoom Pass: 906894
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </td>
+            <td class='cen last'></td>
+        </tr>
+    </table>
+    </div>
+    </main>
+    <script src="./images/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src='./images/jquery-3.6.0.min.js'></script>
+    <script src='./images//clock.js'></script>
+    <script>
+    </script>
+</body>

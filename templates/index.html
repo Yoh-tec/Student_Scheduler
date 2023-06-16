@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id='today'>
+    <h1 id='today-title' class='style-font2' >{{day}}'s schedule</h3>
+    <div id='h-left' class='col-sm-8 row row-cols-3'>
+    {% for cl in today%}
+        {% if cl.name == None %}
+        {% else %}
+        <div class="custom-btn btn-14 card col">
+                <h6 class='time-right'>{{ start_default[cl.time] }} ~ {{ end_default[cl.time] }}</h6>
+                <h6 class="card-title">{{ cl.name }}</h6>
+                <p class="card-text">Professor:  {{cl.teacher}}</p>
+                {% if cl.type=="対面" %}
+                <p class="card-text">Classroom:  {{ cl.classroom }}</p>
+                {% elif cl.type == 'リモート' %}
+                <a href='{{cl.zoom_url}}' class="card-subtitle mb-2 text-muted">Enter the Zoom</a>
+                <p class="card-text">Zoom ID:  {{ cl.zoom_id }}</p>
+                <p class="card-text">Zoom Password:  {{ cl.zoom_pass }}</p>
+                {% elif cl.type == "ハイプレックス" %}
+                <p class="card-text">Classroom:  {{ cl.classroom }}</p>
+                <a href='{{cl.zoom_url}}' class="card-subtitle mb-2 text-muted">Enter the Zoom</a>
+                <p class="card-text" style="margin:5px;">Zoom ID:  {{cl.zoom_id}}</p>
+                <p class="card-text" style="margin:5px;">Zoom Password:  {{cl.zoom_pass}}</p>
+                {% endif %}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    </div>
+</div>
+<hr id='sep'>
+<div id='main'>
+<table class='schedules'>
+    <tr>
+        <th class='time'></th>
+        <th class='week'>Mon</th>
+        <th class='week'>Tue</th>
+        <th class='week'>Wed</th>
+        <th class='week'>Thu</th>
+        <th class='week'>Fri</th>
+        <th class='week'>Sat</th>
+    </tr>
+    <tr>
+        <th class='time'>9: 00<br>~<br>10: 40</th>
+        {% for one in ones %}
+            <td class='cen'>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ one.day }}{{ one.time }}">
+                {{ one.name }}
+            </button>
+            {% if one.name == None %}
+            {% else %}
+            <div class="modal fade" id="exampleModal{{ one.day }}{{ one.time }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Mode: {{ one.type }}</div>
+                        {% if one.type == "対面" %}
+                        <div class="modal-body">Classroom: {{ one.classroom }}</div>
+                        {% elif one.type == "リモート" %}
+                        <div class="modal-body">Zoom Id: {{ one.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ one.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ one.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% elif one.type == "ハイプレックス" %}
+                        <div class="modal-body">Classroom: {{ one.classroom }}</div>
+                        <div class="modal-body">Zoom Id: {{ one.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ one.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ one.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% else %}
+                            <h3>No class</h2>
+                        {% endif %}
+                        <div class="modal-body">
+                            <div>Professor: {{ one.teacher }}</div>
+                            <hr>
+                            <a href="{{ one.file_url }}" class="tooltip-test" title="Tooltip">Go to Hoppii</a></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                        </div>
+                    </div>
+                </div>
+        </td>
+            {% endif %}
+        {% endfor %}
+
+    </tr>
+    <tr>
+        <th class='time'>10: 50<br>~<br>12: 30</th>
+        {% for two in twos %}
+            <td class='cen'>
+            {% if two.name == None %}
+            {% else %}
+            <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ two.day }}{{ two.time }}">
+                {{ two.name }}
+            </div>
+            <div class="modal fade" id="exampleModal{{ two.day }}{{ two.time }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Mode: {{ two.type }}</div>
+                        {% if two.type == "対面" %}
+                        <div class="modal-body">Classroom: {{ two.classroom }}</div>
+                        {% elif two.type == "リモート" %}
+                        <div class="modal-body">Zoom Id: {{ two.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ two.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ two.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% elif two.type == "ハイプレックス" %}
+                        <div class="modal-body">Classroom{{ two.classroom }}</div>
+                        <div class="modal-body">Zoom Id: {{ two.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ two.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ two.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% else %}
+                            <h3>No class</h3>
+                        {% endif %}
+                        <div class="modal-body">
+                            <div>Professor{{ two.teacher }}</div>
+                            <hr>
+                            <a href="{{ two.file_url }}" class="tooltip-test" title="Tooltip">Go to Hoppii</a></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                        </div>
+                    </div>
+                </div>
+        </td>
+            {% endif %}
+        {% endfor %}
+
+    </tr>
+    <tr>
+        <th class='time'>13: 20<br>~<br>15: 00</th>
+        {% for three in threes %}
+        <td class='cen'>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ three.day }}{{ three.time }}">
+                {{ three.name }}
+        </button>
+            {% if three.name == None %}
+            {% else %}
+            <div class="modal fade" id="exampleModal{{ three.day }}{{ three.time }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Mode: {{ three.type }}</div>
+                        {% if three.type == "対面" %}
+                        <div class="modal-body">Classroom{{ three.classroom }}</div>
+                        {% elif three.type == "リモート" %}
+                        <div class="modal-body">Zoom Id: {{ three.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ three.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ three.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% elif three.type == "ハイプレックス" %}
+                        <div class="modal-body">Classroom: {{ three.classroom }}</div>
+                        <div class="modal-body">Zoom Id: {{ three.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ three.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ three.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% else %}
+                            <h3>No Class</h2>
+                        {% endif %}
+                        <div class="modal-body">
+                            <div>Professor: {{ three.teacher }}</div>
+                            <hr>
+                            <a href="{{ three.file_url }}" class="tooltip-test" title="Tooltip">Go to Hoppii</a></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                        </div>
+                    </div>
+                </div>
+        </td>
+            {% endif %}
+        {% endfor %}
+
+
+    </tr>
+    <tr>
+        <th class='time'>15: 10<br>~<br>16: 50</th>
+        {% for four in fours %}
+        <td class='cen'>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ four.day }}{{ four.time }}">
+                {{ four.name }}
+        </button>
+            {% if four.name == None %}
+            {% else %}
+
+            <div class="modal fade" id="exampleModal{{ four.day }}{{ four.time }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Mode: {{ four.type }}</div>
+                        {% if four.type == "対面" %}
+                        <div class="modal-body">Classroom: {{ four.classroom }}</div>
+                        {% elif four.type == "リモート" %}
+                        <div class="modal-body">Zoom Id: {{ four.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ four.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ four.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% elif four.type == "ハイプレックス" %}
+                        <div class="modal-body">Classroom: {{ four.classroom }}</div>
+                        <div class="modal-body">Zoom Id: {{ four.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ four.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ four.zoom_url }}" class="tooltip-test" title="Tooltip">Enter the Zoom</a>
+                        {% else %}
+                            <h3>No Class</h2>
+                        {% endif %}
+                        <div class="modal-body">
+                            <div>Professor: {{ four.teacher }}</div>
+                            <hr>
+                            <a href="{{ four.file_url }}" class="tooltip-test" title="Tooltip">Go to Hoppii</a></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                        </div>
+                    </div>
+                </div>
+        </td>
+            {% endif %}
+        {% endfor %}
+
+
+    </tr>
+    <tr>
+        <th class='time last'>17: 00<br>~<br>18: 40</th>
+        {% for five in fives %}
+        <td class='cen last'>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ five.day }}{{ five.time }}">
+                {{ five.name }}
+        </button>
+            {% if five.name == None %}
+            {% else %}
+            <div type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ five.day }}{{ five.time }}">
+                {{ five.name }}
+            </div>
+            <div class="modal fade" id="exampleModal{{ five.day }}{{ five.time }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Infomation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">授業形態: {{ five.type }}</div>
+                        {% if five.type == "対面" %}
+                        <div class="modal-body">教室: {{ five.classroom }}</div>
+                        {% elif five.type == "リモート" %}
+                        <div class="modal-body">Zoom Id: {{ five.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ five.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ five.zoom_url }}" class="tooltip-test" title="Tooltip">Zoomに参加する</a>
+                        {% elif fivetype == "ハイプレックス" %}
+                        <div class="modal-body">教室: {{ five.classroom }}</div>
+                            <div class="modal-body">Zoom Id: {{ five.zoom_id }}</div>
+                        <div class="modal-body">Zoom Password: {{ five.zoom_pass }}</div>
+                        <hr>
+                        <a href="{{ five.zoom_url }}" class="tooltip-test" title="Tooltip">Zoomに参加する</a>
+                        {% else %}
+                            <h3>No Class</h2>
+                        {% endif %}
+                        <div class="modal-body">
+                            <div>Professor: {{ five.teacher }}</div>
+                            <hr>
+                            <a href="{{ five.file_url }}" class="tooltip-test" title="Tooltip">Go to Hoppii</a></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back to schedules</button>
+                        </div>
+                    </div>
+                </div>
+        </td>
+        {% endif %}
+        {% endfor %}
+        </tr>
+
+</table>
+
+
+{% endblock %}
